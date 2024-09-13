@@ -80,20 +80,57 @@ namespace pixelsGiga
                 for (int j = 0; j < 20; j++)
                 {
                 	if(gridint[j,i]!=0){
-                    	textBox1.AppendText(gridint[j, i].ToString("D2") + " ");
+                		
+                		
+                    	textBox1.AppendText(gridint[j, i].ToString() + " ");
                 	}
                 	else 
                 	{
-                		textBox1.AppendText("00"+ " ");
+                		textBox1.AppendText("0"+ " ");
                 	}
                 }
                 textBox1.AppendText(Environment.NewLine);
             }
 		}
+		public void loadPixelsFromTextBox()
+		{
+		string[] lines = textBox1.Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+        int rows = lines.Length;
+     
+        int cols = 20;
+
+        
+
+        for (int y = 0; y < 20; y++)
+        {
+        	string[] recordsperline = lines[y].Split(new[] {' '});
+            for (int x = 0; x < cols; x++)
+            {
+            	if (recordsperline[x] == "1")
+                {
+            		int xx = x*20;
+					int yy = y*20;
+                	gridint[x,y]=1;
+                	g.FillRectangle(b,xx,yy,20,20);
+                }
+                else
+                {
+                   gridint[x,y]=0;
+                }
+               
+            }
+        }
+        
+		}
+			
 		void Button1Click(object sender, EventArgs e)
 		{
 			textBox1.Text = "";
 			displaygrid();
+		}
+		void Button2Click(object sender, EventArgs e)
+		{
+			loadPixelsFromTextBox();
 		}
 	}
 }
