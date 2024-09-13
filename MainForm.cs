@@ -79,8 +79,8 @@ namespace pixelsGiga
             {
                 for (int j = 0; j < 20; j++)
                 {
-                	if(gridint[i,j]!=0){
-                    	textBox1.AppendText(gridint[i, j].ToString("D2") + " ");
+                	if(gridint[j,i]!=0){
+                    	textBox1.AppendText(gridint[j, i].ToString("D2") + " ");
                 	}
                 	else 
                 	{
